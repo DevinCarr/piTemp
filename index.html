@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Raspi Temp</title>
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
+		<script src="js/Chart.min.js"></script>
+	</head>
+	<body class="container">
+		<h1>Raspberry Pi Page</h1>
+		<p>
+		This is a webpage run from a NodeJS server on my Raspberry Pi
+		</p>
+		<div class="panel">
+			<h1 class="panel-header">Temperature</h1>
+			<p id="tempSpot"></p>
+		</div>
+		<div class="panel">
+			<canvas id="chartCanvas" width="800" height="500"></canvas>
+			<div style="display:none">
+				<div id="timeData"></div>
+				<div id="tempData"></div>
+			</div>
+		</div>
+		<div class="panel-footer">
+			© 2013 <a href="http://devincarr.com">Devin Carr</a> License 
+			<a href="http://opensource.org/licenses/MIT">MIT</a>
+			<span class='pull-right'><a href='https://github.com/DevinCarr/piTemp'>Source code</a></span>
+		</div>
+		<script type="text/javascript">
+			var data = {
+				labels: document.getElementById("timeData").innerHTML.split(","),
+				datasets: [
+					{
+						fillColor : "rgba(151,187,205,0.5)",
+						strokeColor : "rgba(151,187,205,1)",
+						pointColor : "rgba(151,187,205,1)",
+						pointStrokeColor : "#fff",
+						data: document.getElementById("tempData").innerHTML.split(",")
+					}
+				]
+			}
+			var ctx = document.getElementById("chartCanvas").getContext("2d");
+			new Chart(ctx).Line(data);
+		</script>
+	</body>
+</html>
