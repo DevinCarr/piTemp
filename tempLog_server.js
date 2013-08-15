@@ -8,7 +8,8 @@ var intervalId = setInterval(function() {
         fs.appendFile('./data-log.csv', newData, function(err) {
             console.log('File Appended: ' + date + ' at ' + temp);
             if (err) throw err;
-            count++;
         });
     });
 }, 3600000);
+
+console.log('Log running...');
